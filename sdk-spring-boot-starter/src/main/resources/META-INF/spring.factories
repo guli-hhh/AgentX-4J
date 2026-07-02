@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.agentx4j.starter.AgentX4JAutoConfiguration

@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: agentx-demo
+
+agent:
+  x402:
+    enabled: true
+    # Facilitator URL（测试网用 x402 官方，生产环境用 Coinbase 等）
+    facilitator-url: https://x402.org/facilitator
+    # 默认网络（Base Sepolia 测试网）
+    network: eip155:84532
+    # 代币合约地址（Base Sepolia USDC）
+    asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+    # 默认价格
+    default-price: "$0.001"
+    # 收款地址（卖家侧必填）
+    pay-to: ${PAY_TO_ADDRESS:}
+    # 钱包私钥（买家侧必填，通过环境变量注入）
+    wallet-private-key: ${WALLET_PRIVATE_KEY:}
+    # 超时时间
+    max-timeout-seconds: 60
+    # RPC 节点
+    rpc-urls:
+      eip155:84532: https://sepolia.base.org
+      eip155:8453: https://mainnet.base.org
+
+logging:
+  level:
+    com.agentx4j: DEBUG
