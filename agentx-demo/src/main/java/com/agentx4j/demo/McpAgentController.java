@@ -52,6 +52,8 @@ public class McpAgentController {
      * 列出所有可用的 MCP 工具。
      *
      * <p>GET /mcp/tools/list</p>
+     *
+     * @return 工具列表
      */
     @GetMapping("/tools/list")
     public Map<String, Object> listTools() {
@@ -111,6 +113,10 @@ public class McpAgentController {
      *
      * <p>如果未支付，返回 402 + PaymentRequirements。</p>
      * <p>如果已支付（PAYMENT-SIGNATURE header），执行工具并返回结果。</p>
+     *
+     * @param request          请求体，包含工具名称和参数
+     * @param paymentSignature 支付签名（可选）
+     * @return 工具执行结果或支付要求
      */
     @PostMapping("/tools/call")
     public Map<String, Object> callTool(@RequestBody Map<String, Object> request,
@@ -137,6 +143,9 @@ public class McpAgentController {
 
     /**
      * 获取工具定价信息。
+     *
+     * @param toolName 工具名称
+     * @return 工具定价信息
      */
     @GetMapping("/tools/{toolName}/pricing")
     public Map<String, Object> getToolPricing(@PathVariable String toolName) {

@@ -23,7 +23,11 @@ public class BuyerController {
     /**
      * 查询天气（自动处理支付）。
      *
-     * <p>GET /buyer/weather?city=Beijing&sellerUrl=http://localhost:8080</p>
+     * <p>GET /buyer/weather?city=Beijing&amp;sellerUrl=http://localhost:8080</p>
+     *
+     * @param city      城市名称
+     * @param sellerUrl 卖家服务地址
+     * @return 查询结果或错误信息
      */
     @GetMapping("/weather")
     public Map<String, Object> buyWeather(
@@ -51,6 +55,8 @@ public class BuyerController {
 
     /**
      * 获取钱包信息。
+     *
+     * @return 钱包信息
      */
     @GetMapping("/wallet-info")
     public Map<String, Object> getWalletInfo() {
@@ -65,6 +71,8 @@ public class BuyerController {
 
     /**
      * 测试 x402 客户端是否可用。
+     *
+     * @return 客户端状态信息
      */
     @GetMapping("/client-status")
     public Map<String, Object> clientStatus() {

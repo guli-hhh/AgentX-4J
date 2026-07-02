@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @X402Protected 注解的 AOP 切面实现。
+ * {@code @X402Protected} 注解的 AOP 切面实现。
  *
  * <p>拦截标注了 @X402Protected 的方法，自动执行支付验证流程：</p>
  * <ol>
@@ -51,6 +51,11 @@ public class X402ProtectedAspect {
 
     /**
      * 环绕通知：拦截 @X402Protected 方法。
+     *
+     * @param joinPoint      切点信息
+     * @param x402Protected  注解实例
+     * @return 方法执行结果，或 null（支付未通过时）
+     * @throws Throwable 方法执行异常
      */
     @Around("@annotation(x402Protected)")
     public Object around(ProceedingJoinPoint joinPoint, X402Protected x402Protected) throws Throwable {

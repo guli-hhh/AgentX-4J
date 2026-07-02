@@ -22,9 +22,16 @@ import java.lang.annotation.*;
 @Documented
 public @interface AutoSettle {
 
-    /** 结算模式 */
+    /**
+     * 结算模式
+     *
+     * @return 结算模式
+     */
     SettlementMode mode() default SettlementMode.AUTO;
 
+    /**
+     * 结算模式枚举。
+     */
     public enum SettlementMode {
         /** 自动结算（支付验证通过后立即结算） */
         AUTO,

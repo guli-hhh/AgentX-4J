@@ -4,12 +4,37 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.agentx4j</groupId>
-    <artifactId>agentx4j-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>io.github.guli-hhh</groupId>
+    <artifactId>agentx4j</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>AgentX-4J Parent</name>
     <description>Agent Economy SDK for Java - Based on x402 + MCP Protocol</description>
+    <url>https://github.com/guli-hhh/AgentX-4J</url>
+
+    <!-- 2. 许可证 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <!-- 3. 开发者信息 -->
+    <developers>
+        <developer>
+            <name>yoon-echo</name>
+            <email>2940188491@qq.com</email>
+            <url>https://github.com/guli-hhh</url>
+        </developer>
+    </developers>
+
+    <!-- 4. 源码管理  -->
+    <scm>
+        <connection>scm:git:git://github.com/guli-hhh/AgentX-4J.git</connection>
+        <developerConnection>scm:git:ssh://github.com/guli-hhh/AgentX-4J.git</developerConnection>
+        <url>https://github.com/guli-hhh/AgentX-4J</url>
+    </scm>
 
     <modules>
         <module>sdk-core</module>
@@ -74,52 +99,52 @@
 
             <!-- Internal Modules -->
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-wallet</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-x402</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-idempotency</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-storage</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-mcp</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-risk</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-settlement</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-bazaar</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agentx4j</groupId>
+                <groupId>io.github.guli-hhh</groupId>
                 <artifactId>sdk-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -244,6 +269,13 @@
         </dependency>
     </dependencies>
 
+    <!-- 5. 构建插件 -->
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>release</id>-->
+<!--            -->
+<!--        </profile>-->
+<!--    </profiles>-->
     <build>
         <pluginManagement>
             <plugins>
@@ -270,5 +302,57 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- 核心：使用 Sonatype 官方新插件 -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish> <!-- 设为 true 自动发布，false 则需去网页点发布 -->
+                </configuration>
+            </plugin>
+
+            <!-- 打包源码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 打包 Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- GPG 签名 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals><goal>sign</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

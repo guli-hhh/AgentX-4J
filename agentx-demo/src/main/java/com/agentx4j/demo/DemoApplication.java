@@ -32,6 +32,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableX402
 public class DemoApplication {
 
+    /**
+     * 应用入口。
+     *
+     * @param args 命令行参数
+     */
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }

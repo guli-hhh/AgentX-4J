@@ -24,21 +24,45 @@ import java.lang.annotation.*;
 @Documented
 public @interface X402Protected {
 
-    /** 价格（美元字符串，如 "$0.001"） */
+    /**
+     * 价格（美元字符串，如 "$0.001"）
+     *
+     * @return 价格字符串
+     */
     String price();
 
-    /** 网络（CAIP-2 标识，如 "eip155:84532"） */
+    /**
+     * 网络（CAIP-2 标识，如 "eip155:84532"）
+     *
+     * @return 网络标识
+     */
     String network() default "eip155:84532";
 
-    /** 代币合约地址（可选，默认使用全局配置） */
+    /**
+     * 代币合约地址（可选，默认使用全局配置）
+     *
+     * @return 代币合约地址
+     */
     String asset() default "";
 
-    /** 收款地址（可选，默认使用全局配置） */
+    /**
+     * 收款地址（可选，默认使用全局配置）
+     *
+     * @return 收款地址
+     */
     String payTo() default "";
 
-    /** 计费方案 */
+    /**
+     * 计费方案
+     *
+     * @return 计费方案
+     */
     BillingScheme scheme() default BillingScheme.EXACT;
 
-    /** 超时时间（秒） */
+    /**
+     * 超时时间（秒）
+     *
+     * @return 超时秒数
+     */
     long maxTimeoutSeconds() default 60;
 }

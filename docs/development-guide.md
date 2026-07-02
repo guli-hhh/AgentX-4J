@@ -36,9 +36,9 @@ mvn clean install -DskipTests
 
 <dependencies>
     <dependency>
-        <groupId>com.agentx4j</groupId>
+        <groupId>io.github.guli-hhh</groupId>
         <artifactId>sdk-spring-boot-starter</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>

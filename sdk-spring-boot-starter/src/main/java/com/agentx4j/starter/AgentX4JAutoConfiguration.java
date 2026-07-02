@@ -55,6 +55,9 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 FacilitatorClient Bean。
+     *
+     * @param properties SDK 配置属性
+     * @return Facilitator 客户端实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -65,6 +68,10 @@ public class AgentX4JAutoConfiguration {
     /**
      * 创建 X402ResourceServer Bean（卖家侧）。
      * 自动注册 ExactScheme 支持所有 EVM 网络。
+     *
+     * @param facilitatorClient Facilitator 客户端
+     * @param properties        SDK 配置属性
+     * @return 服务端支付处理实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -93,6 +100,9 @@ public class AgentX4JAutoConfiguration {
     /**
      * 创建 X402Client Bean（买家侧）。
      * 自动注册 ExactScheme 支持所有 EVM 网络。
+     *
+     * @param properties SDK 配置属性
+     * @return 客户端自动支付实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -113,6 +123,9 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 McpServerIntegration Bean（MCP Server 计费集成）。
+     *
+     * @param resourceServer 服务端支付处理实例
+     * @return MCP Server 计费集成实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -123,6 +136,8 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 RiskControlEngine Bean（风控引擎）。
+     *
+     * @return 风控引擎实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -134,6 +149,9 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 SettlementEngine Bean（结算引擎）。
+     *
+     * @param facilitatorClient Facilitator 客户端
+     * @return 结算引擎实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -144,6 +162,9 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 NettingService Bean（净额结算服务）。
+     *
+     * @param facilitatorClient Facilitator 客户端
+     * @return 净额结算服务实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -154,6 +175,9 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 BazaarClient Bean（服务发现）。
+     *
+     * @param properties SDK 配置属性
+     * @return 服务发现客户端实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -163,6 +187,8 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 ReconciliationService Bean（对账服务）。
+     *
+     * @return 对账服务实例
      */
     @Bean
     @ConditionalOnMissingBean
@@ -172,6 +198,10 @@ public class AgentX4JAutoConfiguration {
 
     /**
      * 创建 SettlementScheduler Bean（日终结算定时任务）。
+     *
+     * @param settlementEngine     结算引擎
+     * @param reconciliationService 对账服务
+     * @return 结算定时任务实例
      */
     @Bean
     @ConditionalOnMissingBean

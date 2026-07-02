@@ -38,6 +38,10 @@ public class SellerController {
      *   <li>服务端验证 + 结算 + 返回天气数据</li>
      * </ol>
      */
+    /**
+     * @param city 城市名称
+     * @return 天气数据
+     */
     @X402Protected(
         price = "$0.001",
         network = "eip155:84532"
@@ -57,6 +61,9 @@ public class SellerController {
 
     /**
      * 付费翻译接口（更贵）。
+     *
+     * @param request 翻译请求体，包含文本和语言参数
+     * @return 翻译结果
      */
     @X402Protected(
         price = "$0.005",
@@ -74,6 +81,8 @@ public class SellerController {
 
     /**
      * 免费健康检查接口。
+     *
+     * @return 服务健康状态
      */
     @GetMapping("/health")
     public Map<String, Object> health() {
@@ -88,6 +97,8 @@ public class SellerController {
      * 查询支付要求（供客户端参考）。
      *
      * <p>GET /api/pricing</p>
+     *
+     * @return 服务定价信息
      */
     @GetMapping("/pricing")
     public Map<String, Object> pricing() {
